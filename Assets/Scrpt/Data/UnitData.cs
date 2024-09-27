@@ -5,11 +5,15 @@ using UnityEngine.Rendering;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.TextCore.Text;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 [System.Serializable]
 public class UnitData
 {
     public string charname="CharacterName";
+    [Space(10)]
+    public List<abilityData> characterAbilities;
+
     [Space(10)]
     public CharacterUIData charUI;
     [Space(10)]
@@ -33,11 +37,14 @@ public class UnitData
     [Space(10)]
     public UnityEvent onAttack;
     public UnityEvent onWasAttacked;
+    public UnityEvent onJustReady;
     public bool playerJustAttacked;
 
     [Space(16)]
 
     public UnitData _target;
+
+ //   bool wasJustReady;
 
     public void Init()
     {
@@ -47,12 +54,15 @@ public class UnitData
 
         onAttack.AddListener(characterAttackdefault);
         onWasAttacked.AddListener(characterAttackeddefault);
+        onJustReady.AddListener(onReadyDefault);
 
         charcterState = CharcterState.IDEL;
     }
 
     public void Attack()
     {
+        if (charcterState == CharcterState.DIED) return;
+
         onAttack.Invoke();
 
         //temp attack
@@ -63,6 +73,7 @@ public class UnitData
         {
             IncreaseLB(5);
         }
+        charcterState = CharcterState.ATTACKING;
     }
 
 
@@ -125,46 +136,53 @@ public class UnitData
     {
         Debug.Log(charname + "was attacked"); 
     }
- /*   public IEnumerator CharacterBehaviour()
-   {
-       //베이스캐릭 타겟
+
+void onReadyDefault()
+    {
+        UImanager.instance.actionWindow.SetActive(true);
 
 
 
-       yield return new WaitUntil(() =>CanattackTarget);
+        charUI.physicUI.characterUI.color = Color.cyan;
+    }
 
-       //캐릭터가 액션을 취할때까지 기다림
-
-       yield return new WaitUntil(() => playerJustAttacked);
-
-       onAttack.Invoke();
-   }*/
-
+    void ResetUINameText()
+    {
+        charUI.physicUI.characterUI.color = Color.white;
+    }
  public IEnumerator CharacterLoop()
    {
-       while(charcterState !=CharcterState.DIED)
+         while(charcterState !=CharcterState.DIED)
        {
-           if (currentspeed >= speedlimit)
-           {
-              currentspeed = speedlimit;
-                charcterState = CharcterState.READY;
-           }
-           else
-           {
-              currentspeed += Time.deltaTime;
-
-                if(charcterteam==CharcterTeam.FRIEND)
+         while(currentspeed<speedlimit)
+            {
+                currentspeed += Time.deltaTime;
+                if (charcterteam == CharcterTeam.FRIEND)
                 {
                     charUI.UpdateTimeBar(currentspeed);
                 }
+                
+                if(charcterState==CharcterState.ATTACKED)
+                {
+                    charcterState = CharcterState.IDEL;
+                }
+                yield return null;
+            }
+         //we are ready
+            currentspeed = speedlimit;
+            charcterState = CharcterState.READY;
+            onJustReady.Invoke();
 
-                charUI.UpdateTimeBar(currentspeed);
-                charcterState = CharcterState.IDEL;
-           }
-           yield return null;
-       }
+            yield return new WaitUntil(() => charcterState == CharcterState.ATTACKING);
 
-   }
+            //TODO: :Change this to ues animate events
+            charcterState = CharcterState.IDEL;
+
+            yield return new WaitUntil(() => charcterState == CharcterState.IDEL);
+
+
+        }
+    }
 }
 [System.Serializable]
 public class CharacterUIData
@@ -194,8 +212,7 @@ public class CharacterUIData
         UpdateHealthBar(curHP, maxHP);
         //mpsetup
         physicUI.MPbar.maxValue = maxMP;
-        physicUI.MPbar.value = curMP;
-        physicUI.MPUI.text = curMP.ToString() + "/" + maxMP.ToString();
+        UpdateMpBar(curMP);
 
         //charinfo setup
         physicUI.characterUI.text = charName;
@@ -225,10 +242,10 @@ public class CharacterUIData
         physicUI.HPUI.text= currentAmount.ToString() + "/" + maxAmount.ToString();
     }
 
-    public void UpdateMpBar(int currentAmout,int maxAmount)
+    public void UpdateMpBar(int currentAmount)
     {
-        physicUI.MPbar.value=currentAmout;
-
+        physicUI.MPbar.value=currentAmount;
+        physicUI.MPUI.text = currentAmount.ToString();
     }
 }
 public enum CharcterTeam
