@@ -9,6 +9,11 @@ public class CharacterControl : MonoBehaviour
     public UnitData CharacterData;
     public CharacterControl targetData;
 
+    private void Awake()
+    {
+        CharacterData._charcont = this;
+    }
+
     private void Start()
     {
         CharacterData.Init();
@@ -30,22 +35,11 @@ public class CharacterControl : MonoBehaviour
         }
       */
     }
-    private void Update()
+ /*   private void Update()
     {//캐릭속도 증가
     
-        if(CharacterData.Isreadyforaction)
-        {
-            Debug.Log("is ready to attack");
-            if(CharacterData.charcterteam==CharcterTeam.FRIEND && Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("player do a action");
-                if(CharacterData._target.CanBeAttacked)
-                {
-                    CharacterData.Attack();
-                }
-                
-            }
-        }
+    
 
     }
+ */
 }

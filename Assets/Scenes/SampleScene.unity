@@ -1052,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &574616297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,6 +1067,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterData:
     charname: Dummy
+    basicAttack:
+      abilityName: AbilityOne
+      abValue: 10
+      mpCost: 1
+      type: 1
+      output: 0
     characterAbilities: []
     charUI:
       physicUI: {fileID: 0}
@@ -1087,7 +1093,11 @@ MonoBehaviour:
     onWasAttacked:
       m_PersistentCalls:
         m_Calls: []
+    onJustReady:
+      m_PersistentCalls:
+        m_Calls: []
     playerJustAttacked: 0
+    _charcont: {fileID: 0}
   targetData: {fileID: 844015507}
 --- !u!4 &574616298
 Transform:
@@ -1540,6 +1550,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterData:
     charname: Kloud
+    basicAttack:
+      abilityName: AbilityOne
+      abValue: 10
+      mpCost: 1
+      type: 1
+      output: 0
     characterAbilities: []
     charUI:
       physicUI: {fileID: 0}
@@ -1560,7 +1576,11 @@ MonoBehaviour:
     onWasAttacked:
       m_PersistentCalls:
         m_Calls: []
+    onJustReady:
+      m_PersistentCalls:
+        m_Calls: []
     playerJustAttacked: 0
+    _charcont: {fileID: 0}
   targetData: {fileID: 844015507}
 --- !u!4 &844015508
 Transform:
@@ -1608,6 +1628,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterData:
     charname: Jane
+    basicAttack:
+      abilityName: AbilityOne
+      abValue: 10
+      mpCost: 1
+      type: 1
+      output: 0
     characterAbilities: []
     charUI:
       physicUI: {fileID: 0}
@@ -1628,7 +1654,11 @@ MonoBehaviour:
     onWasAttacked:
       m_PersistentCalls:
         m_Calls: []
+    onJustReady:
+      m_PersistentCalls:
+        m_Calls: []
     playerJustAttacked: 0
+    _charcont: {fileID: 0}
   targetData: {fileID: 574616297}
 --- !u!4 &859249554
 Transform:
@@ -3162,6 +3192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1715404941}
   - component: {fileID: 1715404940}
+  - component: {fileID: 1715404942}
   m_Layer: 0
   m_Name: UImanager
   m_TagString: Untagged
@@ -3186,6 +3217,7 @@ MonoBehaviour:
   rowPrefab: {fileID: 3839487324237836592, guid: 140b5205470078a46b15a0a6f935fdfa, type: 3}
   namePrefab: {fileID: 2325858544725791784, guid: ba81ba76a062d7e479595defb0c5e7a8, type: 3}
   defaultRowUI: {fileID: 1810757733}
+  actionWindow: {fileID: 1011467336}
 --- !u!4 &1715404941
 Transform:
   m_ObjectHideFlags: 0
@@ -3201,6 +3233,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1715404942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715404939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f1408da9c7a64ca99d88312e3171a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentcharcter: {fileID: 0}
 --- !u!1 &1729656469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3734,7 +3779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -6.301758, y: 23.6325}
+  m_AnchoredPosition: {x: -6.301758, y: 23.632446}
   m_SizeDelta: {x: 345.5839, y: 252.735}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1908516414
@@ -3857,7 +3902,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1915375816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1715404942}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: DoBasicAttackOnTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1915375816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3930,7 +3987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 52.19568, y: 205.32007}
+  m_AnchoredPosition: {x: 52.1958, y: 205.32007}
   m_SizeDelta: {x: -104.3518, y: 94.68}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1930499065

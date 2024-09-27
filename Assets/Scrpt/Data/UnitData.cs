@@ -12,6 +12,7 @@ public class UnitData
 {
     public string charname="CharacterName";
     [Space(10)]
+    public abilityData basicAttack;
     public List<abilityData> characterAbilities;
 
     [Space(10)]
@@ -44,39 +45,60 @@ public class UnitData
 
     public UnitData _target;
 
+    [HideInInspector]
+    public CharacterControl _charcont;
  //   bool wasJustReady;
 
     public void Init()
     {
         
         if(charcterteam==CharcterTeam.FRIEND)
-        charUI.init(maxhp,currenthp,maxmana,currentmana,charname,speedlimit,limitburstpoint);
+        {
+            charUI.init(maxhp, currenthp, maxmana, currentmana, charname, speedlimit, limitburstpoint);
+            onJustReady.AddListener(onReadyDefault);
+        }
 
         onAttack.AddListener(characterAttackdefault);
         onWasAttacked.AddListener(characterAttackeddefault);
-        onJustReady.AddListener(onReadyDefault);
+
+
+     
 
         charcterState = CharcterState.IDEL;
     }
 
-    public void Attack()
+    public void Attack(abilityData ability)
     {
         if (charcterState == CharcterState.DIED) return;
 
         onAttack.Invoke();
 
         //temp attack
-        _target.Damage(10);
-     //   Debug.Log("target was attacked");
+        switch(ability.output)
+        {
+            case AbilityOutput.DAMAGE:
+                _target.Damage(ability.abValue);
+                break;
+            case AbilityOutput.HEAL:
+                _target.Heal(ability.abValue);
+                break;
+             
+        }
+       
+        //   Debug.Log("target was attacked");
 
-        if(charcterteam==CharcterTeam.FRIEND)
+        if (charcterteam==CharcterTeam.FRIEND)
         {
             IncreaseLB(5);
         }
         charcterState = CharcterState.ATTACKING;
     }
 
-
+    public void Heal(int healamount)
+    {
+       currenthp=Mathf.Clamp(currenthp+healamount,0,_target.maxhp);
+        charUI.UpdateHealthBar(currenthp, maxhp);
+    }
     public void Damage(int damageAmount)
     {
         currenthp -= damageAmount;
@@ -141,14 +163,20 @@ void onReadyDefault()
     {
         UImanager.instance.actionWindow.SetActive(true);
 
-
+        foreach(var item in GameObject.FindObjectsOfType<CharacterControl>())
+        {
+            if(item.CharacterData.charcterteam!=CharcterTeam.ENEMY)
+            item.CharacterData.ResetUINameText();
+        }
 
         charUI.physicUI.characterUI.color = Color.cyan;
+        BattleManager.Instance.currentcharcter = _charcont;
     }
 
-    void ResetUINameText()
-    {
+   public void ResetUINameText()
+    { 
         charUI.physicUI.characterUI.color = Color.white;
+
     }
  public IEnumerator CharacterLoop()
    {
