@@ -54,6 +54,7 @@ public class UnitData
         
         if(charcterteam==CharcterTeam.FRIEND)
         {
+            charUI.charData = this;
             charUI.init(maxhp, currenthp, maxmana, currentmana, charname, speedlimit, limitburstpoint);
             onJustReady.AddListener(onReadyDefault);
         }
@@ -161,12 +162,19 @@ public class UnitData
 
 void onReadyDefault()
     {
+        SelectCharacter();
+    }
+    public void SelectCharacter()
+    {
+        if (!Isreadyforaction)
+            return;
+
         UImanager.instance.actionWindow.SetActive(true);
 
-        foreach(var item in GameObject.FindObjectsOfType<CharacterControl>())
+        foreach (var item in GameObject.FindObjectsOfType<CharacterControl>())
         {
-            if(item.CharacterData.charcterteam!=CharcterTeam.ENEMY)
-            item.CharacterData.ResetUINameText();
+            if (item.CharacterData.charcterteam != CharcterTeam.ENEMY)
+                item.CharacterData.ResetUINameText();
         }
 
         charUI.physicUI.characterUI.color = Color.cyan;
@@ -218,7 +226,8 @@ public class CharacterUIData
     public RowUI physicUI;
     public int placeInUI = 1;
 
-    
+    [HideInInspector]
+    public UnitData charData;
 
     public void init(int maxHP,int curHP,int maxMP,int curMP,string charName,float speedLimit,float limitMax)
     { 
@@ -228,11 +237,12 @@ public class CharacterUIData
         {
             //Do not want to spawn another rouw and use the first one.
             physicUI = UImanager.instance.defaultRowUI;
+            UImanager.instance.firstOnclick.charHolder = charData;
         }
         else
         {
             //generate spaeing of the row
-            UImanager.instance.SpawnRow(out physicUI);
+            UImanager.instance.SpawnRow(out physicUI,charData);
         }
       
         //health setup

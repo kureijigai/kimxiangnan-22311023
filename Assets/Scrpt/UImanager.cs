@@ -17,6 +17,7 @@ public class UImanager : MonoBehaviour
 
     [Header("First PlayerUI")]
     public RowUI defaultRowUI;
+    public OnclickGeneric firstOnclick;
 
     public GameObject actionWindow;
 
@@ -26,7 +27,7 @@ public class UImanager : MonoBehaviour
     {
         instance = this;
     }
-    public void SpawnRow(out RowUI processedUI)
+    public void SpawnRow(out RowUI processedUI,UnitData passedData)
     {
         //init row
         GameObject tmpRow = Instantiate(rowPrefab);
@@ -36,10 +37,13 @@ public class UImanager : MonoBehaviour
         GameObject tmpname = Instantiate(namePrefab);
         tmpname.transform.SetParent(nameHolder,false);
         Text txtName=tmpname.GetComponent<Text>();
+        OnclickGeneric onClickEvent=tmpname.GetComponent<OnclickGeneric>();
+
 
         tmpRow.name = "Character" + tmpRow.transform.childCount;
 
         rowTmpInfo.characterUI = txtName;
+        onClickEvent.charHolder = passedData;
 
         processedUI = rowTmpInfo;
     }

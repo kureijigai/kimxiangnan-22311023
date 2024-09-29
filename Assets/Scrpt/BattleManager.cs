@@ -13,6 +13,10 @@ public class BattleManager : MonoBehaviour
     {
         Instance = this;
     }
+    public void SelectCharacter(UnitData newChar)
+    {
+        newChar.SelectCharacter();
+    }
 
     public void DoBasicAttackOnTarget()
     {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3775062105059589462}
   - component: {fileID: 6458986908964302871}
   - component: {fileID: 8415680917759567158}
+  - component: {fileID: 3025652474992402045}
   m_Layer: 5
   m_Name: Charname
   m_TagString: Untagged
@@ -79,3 +80,187 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: newtext
+--- !u!114 &3025652474992402045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325858544725791784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839e99869cf1f4d40b94bee18477c77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charHolder:
+    charname: CharacterName
+    basicAttack:
+      abilityName: AbilityOne
+      abValue: 10
+      mpCost: 1
+      type: 1
+      output: 0
+    characterAbilities: []
+    charUI:
+      physicUI: {fileID: 0}
+      placeInUI: 1
+      charData:
+        charname: CharacterName
+        basicAttack:
+          abilityName: AbilityOne
+          abValue: 10
+          mpCost: 1
+          type: 1
+          output: 0
+        characterAbilities: []
+        charUI:
+          physicUI: {fileID: 0}
+          placeInUI: 1
+          charData:
+            charname: CharacterName
+            basicAttack:
+              abilityName: AbilityOne
+              abValue: 10
+              mpCost: 1
+              type: 1
+              output: 0
+            characterAbilities: []
+            charUI:
+              physicUI: {fileID: 0}
+              placeInUI: 1
+              charData:
+                charname: CharacterName
+                basicAttack:
+                  abilityName: AbilityOne
+                  abValue: 10
+                  mpCost: 1
+                  type: 1
+                  output: 0
+                characterAbilities: []
+                charUI:
+                  physicUI: {fileID: 0}
+                  placeInUI: 1
+                  charData:
+                    charname: CharacterName
+                    basicAttack:
+                      abilityName: AbilityOne
+                      abValue: 10
+                      mpCost: 1
+                      type: 1
+                      output: 0
+                    characterAbilities: []
+                    charUI:
+                      physicUI: {fileID: 0}
+                      placeInUI: 1
+                      charData:
+                        charname: CharacterName
+                        maxhp: 100
+                        currenthp: 100
+                        maxmana: 100
+                        currentmana: 100
+                        limitburstpoint: 100
+                        currentBpoint: 100
+                        speedlimit: 10
+                        currentspeed: 10
+                        charcterState: 0
+                        charcterteam: 0
+                        playerJustAttacked: 0
+                    maxhp: 100
+                    currenthp: 100
+                    maxmana: 100
+                    currentmana: 100
+                    limitburstpoint: 100
+                    currentBpoint: 100
+                    speedlimit: 10
+                    currentspeed: 10
+                    charcterState: 0
+                    charcterteam: 0
+                    onAttack: {}
+                    onWasAttacked: {}
+                    onJustReady: {}
+                    playerJustAttacked: 0
+                    _charcont: {fileID: 0}
+                maxhp: 100
+                currenthp: 100
+                maxmana: 100
+                currentmana: 100
+                limitburstpoint: 100
+                currentBpoint: 100
+                speedlimit: 10
+                currentspeed: 10
+                charcterState: 0
+                charcterteam: 0
+                onAttack:
+                  m_PersistentCalls:
+                    m_Calls: []
+                onWasAttacked:
+                  m_PersistentCalls:
+                    m_Calls: []
+                onJustReady:
+                  m_PersistentCalls:
+                    m_Calls: []
+                playerJustAttacked: 0
+                _charcont: {fileID: 0}
+            maxhp: 100
+            currenthp: 100
+            maxmana: 100
+            currentmana: 100
+            limitburstpoint: 100
+            currentBpoint: 100
+            speedlimit: 10
+            currentspeed: 10
+            charcterState: 0
+            charcterteam: 0
+            onAttack:
+              m_PersistentCalls:
+                m_Calls: []
+            onWasAttacked:
+              m_PersistentCalls:
+                m_Calls: []
+            onJustReady:
+              m_PersistentCalls:
+                m_Calls: []
+            playerJustAttacked: 0
+            _charcont: {fileID: 0}
+        maxhp: 100
+        currenthp: 100
+        maxmana: 100
+        currentmana: 100
+        limitburstpoint: 100
+        currentBpoint: 100
+        speedlimit: 10
+        currentspeed: 10
+        charcterState: 0
+        charcterteam: 0
+        onAttack:
+          m_PersistentCalls:
+            m_Calls: []
+        onWasAttacked:
+          m_PersistentCalls:
+            m_Calls: []
+        onJustReady:
+          m_PersistentCalls:
+            m_Calls: []
+        playerJustAttacked: 0
+        _charcont: {fileID: 0}
+    maxhp: 100
+    currenthp: 100
+    maxmana: 100
+    currentmana: 100
+    limitburstpoint: 100
+    currentBpoint: 100
+    speedlimit: 10
+    currentspeed: 10
+    charcterState: 0
+    charcterteam: 0
+    onAttack:
+      m_PersistentCalls:
+        m_Calls: []
+    onWasAttacked:
+      m_PersistentCalls:
+        m_Calls: []
+    onJustReady:
+      m_PersistentCalls:
+        m_Calls: []
+    playerJustAttacked: 0
+    _charcont: {fileID: 0}
