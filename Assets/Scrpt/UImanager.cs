@@ -20,6 +20,11 @@ public class UImanager : MonoBehaviour
     public OnclickGeneric firstOnclick;
 
     public GameObject actionWindow;
+    [Header("Ability Window")]
+    public GameObject abilityUIholder;
+    public GameObject abilityUIprefab;
+    public Text manaNeededUI;
+
 
     public static int currentUicount=1;
 
@@ -46,5 +51,13 @@ public class UImanager : MonoBehaviour
         onClickEvent.charHolder = passedData;
 
         processedUI = rowTmpInfo;
+    }
+    public void FillabillityWindow()
+    {
+
+    }
+    void CleanabillityWindow()
+    {
+
     }
 }
