@@ -20,17 +20,21 @@ public class UImanager : MonoBehaviour
     public OnclickGeneric firstOnclick;
 
     public GameObject actionWindow;
+
     [Header("Ability Window")]
-    public GameObject abilityUIholder;
     public GameObject abilityUIprefab;
-    public Text manaNeededUI;
+    public Transform abilityUIholder;
+    public Text mananeededUI;
 
 
     public static int currentUicount=1;
 
+  
     private void Awake()
     {
         instance = this;
+
+       
     }
     public void SpawnRow(out RowUI processedUI,UnitData passedData)
     {
@@ -54,10 +58,25 @@ public class UImanager : MonoBehaviour
     }
     public void FillabillityWindow()
     {
+        CleanabillityWindow();
 
+
+        // 창에 내용을 채우는 용->스킬을 가져와서 띄우는 용
+        var data = BattleManager.Instance.currentcharcter.CharacterData.characterAbilities;
+      for (int i=0;i< data.Count;i++)
+        {
+            GameObject tmpAbilityPrefab = Instantiate(abilityUIprefab);
+            tmpAbilityPrefab.transform.SetParent(abilityUIholder);
+
+            AbilityUI tmpAbUI = tmpAbilityPrefab.GetComponent<AbilityUI>();
+           // tmpAbUI.ablityindex = i;
+        }
     }
     void CleanabillityWindow()
     {
-
+        foreach (Transform item in abilityUIholder)
+        {
+            Destroy(item.gameObject); 
+        }
     }
 }
