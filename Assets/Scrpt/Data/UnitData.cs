@@ -75,7 +75,7 @@ public class UnitData
         onAttack.Invoke();
 
         //temp attack
-
+        Debug.Log("attack with" + ability.abilityName+"to"+_target.charname);
 
         switch(ability.output)
         {

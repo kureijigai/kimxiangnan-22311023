@@ -10,7 +10,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
 
     public Text abilityText;
 
-    
+    bool isSelected;
     public void Init(string abilityName)
     {
         abilityText.text = abilityName;
@@ -18,14 +18,26 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        var charData = BattleManager.Instance.currentcharcter.CharacterData.characterAbilities;
-        for(int i=0;i<charData.Count;i++)
+        var charData = BattleManager.Instance.currentcharcter.CharacterData;
+
+        for(int i=0;i<charData.characterAbilities. Count;i++)
         {
             if(abilityindex.Equals(i))
             {
-                BattleManager.Instance.currentcharcter.CharacterData.Attack(charData[i]);
+                if(isSelected)
+                {
+                    BattleManager.Instance.currentcharcter.CharacterData.Attack(charData.characterAbilities[i]);
+
+                }
+                else
+                {
+                    UImanager.instance.SetmananeededUI(charData.characterAbilities[i].mpCost, charData.currentmana);
+                }
+              
                 break;
             }
         }
     }
+
+   
 }

@@ -23,17 +23,7 @@ public class CharacterControl : MonoBehaviour
 
         StartCoroutine(CharacterData.CharacterLoop());
 
-      /*  if(true)
-
-        if(CharacterData.charUI.physicUI.Limitbar==null)
-        {
-            print(gameObject.name);
-        }
-        if(CharacterData.charUI.physicUI.Timebar==null)
-        {
-            print(gameObject.name);
-        }
-      */
+      
     }
  /*   private void Update()
     {//캐릭속도 증가

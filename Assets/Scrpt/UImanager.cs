@@ -69,8 +69,13 @@ public class UImanager : MonoBehaviour
             tmpAbilityPrefab.transform.SetParent(abilityUIholder);
 
             AbilityUI tmpAbUI = tmpAbilityPrefab.GetComponent<AbilityUI>();
-           // tmpAbUI.ablityindex = i;
+            tmpAbUI.abilityindex = i;
         }
+    }
+
+    public void SetmananeededUI(int abilityMana,int charCurMana)
+    {
+        mananeededUI.text = abilityMana + "/" + charCurMana;
     }
     void CleanabillityWindow()
     {
