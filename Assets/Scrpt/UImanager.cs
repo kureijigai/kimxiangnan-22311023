@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UImanager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static UImanager instance;
+    public static UImanager Instance;
 
     public Transform rowHolder;
     public Transform nameHolder;
@@ -20,6 +20,7 @@ public class UImanager : MonoBehaviour
     public OnclickGeneric firstOnclick;
 
     public GameObject actionWindow;
+    public GameObject abilityWindow;
 
     [Header("Ability Window")]
     public GameObject abilityUIprefab;
@@ -32,9 +33,8 @@ public class UImanager : MonoBehaviour
   
     private void Awake()
     {
-        instance = this;
+        Instance = this;
 
-       
     }
     public void SpawnRow(out RowUI processedUI,UnitData passedData)
     {
@@ -60,9 +60,9 @@ public class UImanager : MonoBehaviour
     {
         CleanabillityWindow();
 
-
         // 창에 내용을 채우는 용->스킬을 가져와서 띄우는 용
-        var data = BattleManager.Instance.currentcharcter.CharacterData.characterAbilities;
+      var data = BattleManager.Instance.currentcharcter.CharacterData.characterAbilities;
+
       for (int i=0;i< data.Count;i++)
         {
             GameObject tmpAbilityPrefab = Instantiate(abilityUIprefab);
@@ -70,6 +70,8 @@ public class UImanager : MonoBehaviour
 
             AbilityUI tmpAbUI = tmpAbilityPrefab.GetComponent<AbilityUI>();
             tmpAbUI.abilityindex = i;
+
+            tmpAbUI.Init(data[i].abilityName);
         }
     }
 

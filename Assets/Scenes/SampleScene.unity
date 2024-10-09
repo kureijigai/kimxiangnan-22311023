@@ -1885,7 +1885,7 @@ MonoBehaviour:
         m_Calls: []
     playerJustAttacked: 0
     _charcont: {fileID: 0}
-  targetData: {fileID: 859249553}
+  targetData: {fileID: 844015507}
 --- !u!4 &844015508
 Transform:
   m_ObjectHideFlags: 0
@@ -2136,7 +2136,7 @@ MonoBehaviour:
         m_Calls: []
     playerJustAttacked: 0
     _charcont: {fileID: 0}
-  targetData: {fileID: 844015507}
+  targetData: {fileID: 859249553}
 --- !u!4 &859249554
 Transform:
   m_ObjectHideFlags: 0
@@ -2188,7 +2188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -77.95}
+  m_AnchoredPosition: {x: 0, y: -129}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &955628048
@@ -2315,7 +2315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1011467337
 RectTransform:
   m_ObjectHideFlags: 0

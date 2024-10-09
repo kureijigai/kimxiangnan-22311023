@@ -11,6 +11,7 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class UnitData
 {
     public string charname="CharacterName";
+
     [Space(10)]
     public abilityData basicAttack;
     public List<abilityData> characterAbilities;
@@ -171,7 +172,8 @@ void onReadyDefault()
         if (!Isreadyforaction)
             return;
 
-        UImanager.instance.actionWindow.SetActive(true);
+        UImanager.Instance.actionWindow.SetActive(true);
+        UImanager.Instance.abilityWindow.SetActive(false);
 
         foreach (var item in GameObject.FindObjectsOfType<CharacterControl>())
         {
@@ -238,13 +240,13 @@ public class CharacterUIData
         if (placeInUI == 1)
         {
             //Do not want to spawn another rouw and use the first one.
-            physicUI = UImanager.instance.defaultRowUI;
-            UImanager.instance.firstOnclick.charHolder = charData;
+            physicUI = UImanager.Instance.defaultRowUI;
+            UImanager.Instance.firstOnclick.charHolder = charData;
         }
         else
         {
             //generate spaeing of the row
-            UImanager.instance.SpawnRow(out physicUI,charData);
+            UImanager.Instance.SpawnRow(out physicUI,charData);
         }
       
         //health setup

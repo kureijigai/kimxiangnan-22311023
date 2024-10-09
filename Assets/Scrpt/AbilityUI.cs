@@ -31,7 +31,7 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
                 }
                 else
                 {
-                    UImanager.instance.SetmananeededUI(charData.characterAbilities[i].mpCost, charData.currentmana);
+                    UImanager.Instance.SetmananeededUI(charData.characterAbilities[i].mpCost, charData.currentmana);
                 }
               
                 break;
