@@ -59,7 +59,7 @@ public class UImanager : MonoBehaviour
     public void FillabillityWindow()
     {
         actionWindow.SetActive(false);
-        abilityWindow.SetActive(true);
+       abilityWindow.SetActive(true);
 
         CleanabillityWindow();
 
