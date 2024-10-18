@@ -58,10 +58,10 @@ public class UImanager : MonoBehaviour
     }
     public void FillabillityWindow()
     {
-        actionWindow.SetActive(false);
-       abilityWindow.SetActive(true);
+      //actionWindow.SetActive(false);
+      //abilityWindow.SetActive(true);
 
-        CleanabillityWindow();
+          CleanabillityWindow();
 
         // 창에 내용을 채우는 용->스킬을 가져와서 띄우는 용
       var data = BattleManager.Instance.currentcharcter.CharacterData.characterAbilities;

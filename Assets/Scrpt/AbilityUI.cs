@@ -27,11 +27,12 @@ public class AbilityUI : MonoBehaviour, IPointerDownHandler
                 if(isSelected)
                 {
                     BattleManager.Instance.currentcharcter.CharacterData.Attack(charData.characterAbilities[i]);
-
+                    isSelected = false;
                 }
                 else
                 {
                     UImanager.Instance.SetmananeededUI(charData.characterAbilities[i].mpCost, charData.currentmana);
+                    isSelected = true;
                 }
               
                 break;

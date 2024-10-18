@@ -18,6 +18,7 @@ public class UnitData
 
     [Space(10)]
     public CharacterUIData charUI;
+
     [Space(10)]
     public int maxhp=100;
     public int currenthp=100;
@@ -71,7 +72,8 @@ public class UnitData
 
     public void Attack(abilityData ability)
     {
-        if (charcterState == CharcterState.DIED) return;
+        if (charcterState == CharcterState.DIED) 
+            return;
 
         onAttack.Invoke();
 
@@ -174,7 +176,7 @@ void onReadyDefault()
 
         UImanager.Instance.actionWindow.SetActive(true);
         UImanager.Instance.abilityWindow.SetActive(false);
-
+       
         foreach (var item in GameObject.FindObjectsOfType<CharacterControl>())
         {
             if (item.CharacterData.charcterteam != CharcterTeam.ENEMY)
