@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.TextCore.Text;
 using static Unity.Burst.Intrinsics.X86.Avx;
+using UnityEditor.Playables;
 
 [System.Serializable]
 public class UnitData
@@ -69,7 +70,35 @@ public class UnitData
 
         charcterState = CharcterState.IDEL;
     }
+    IEnumerator QueueAttack(abilityData ability)
+    {
+        if (charcterState == CharcterState.DIED)
+            yield break;
 
+        onAttack.Invoke();
+
+        //temp attack
+        Debug.Log("attack with" + ability.abilityName + "to" + _target.charname);
+
+        switch (ability.output)
+        {
+            case AbilityOutput.DAMAGE:
+                _target.Damage(ability.abValue);
+                break;
+            case AbilityOutput.HEAL:
+                _target.Heal(ability.abValue);
+                break;
+
+        }
+
+        //   Debug.Log("target was attacked");
+
+        if (charcterteam == CharcterTeam.FRIEND)
+        {
+            IncreaseLB(5);
+        }
+        charcterState = CharcterState.ATTACKING;
+    }
     public void Attack(abilityData ability)
     {
         if (charcterState == CharcterState.DIED) 

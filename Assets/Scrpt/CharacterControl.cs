@@ -8,6 +8,7 @@ public class CharacterControl : MonoBehaviour
 {
     public UnitData CharacterData;
     public CharacterControl targetData;
+    public Coroutine attackQueue;
 
     private void Awake()
     {
